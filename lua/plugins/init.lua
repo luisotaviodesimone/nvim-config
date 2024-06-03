@@ -21,6 +21,7 @@ local plugins = {
     opts = {
       ensure_installed = {
         "lua-language-server",
+        "gopls",
         "clangd",
         "stylua",
         "html-lsp",
@@ -34,8 +35,11 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "vim", "lua", "vimdoc",
-        "html", "css"
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css"
       },
     },
   },
