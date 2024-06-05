@@ -3,12 +3,16 @@ require "nvchad.options"
 -- add yours here!
 
 local opt = vim.opt
+local o = vim.o
 local bo = vim.bo
 
 opt.nu = true
 opt.relativenumber = true
 
 opt.smartindent = true
+
+-- Set clipboard
+o.clipboard = ""
 
 -- Set tabspaces
 opt.tabstop = 2
