@@ -5,6 +5,7 @@ return {
       "lua-language-server",
       "gopls",
       "clangd",
+      "sql-formatter",
       "stylua",
       "html-lsp",
       "css-lsp",
