@@ -6,6 +6,7 @@ return {
       "gopls",
       "clangd",
       "sql-formatter",
+      "yaml-language-server",
       "stylua",
       "html-lsp",
       "css-lsp",

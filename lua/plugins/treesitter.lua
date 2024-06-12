@@ -7,6 +7,7 @@ return {
       "vimdoc",
       "html",
       "css",
+      "yaml"
     },
   },
 }
