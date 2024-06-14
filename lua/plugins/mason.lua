@@ -5,6 +5,7 @@ return {
       "lua-language-server",
       "gopls",
       "clangd",
+      "pyright",
       "sql-formatter",
       "yaml-language-server",
       "stylua",
