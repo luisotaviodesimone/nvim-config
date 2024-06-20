@@ -6,6 +6,7 @@ local options = {
     -- Use a sub-list to run only the first available formatter
     javascript = { { "prettierd", "prettier" } },
     sql = { "sql_formatter" },
+    xml = { "xmllint" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
