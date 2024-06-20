@@ -23,6 +23,11 @@ for _, lsp in ipairs(servers) do
           kubernetes = "*.yaml",
           ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
           ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.0/all.json"] = "k8s/**",
+          -- ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = {
+          --   "ci/*.yml",
+          --   ".gitlab-ci.yml",
+          -- },
           ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
           ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
           ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
