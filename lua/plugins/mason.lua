@@ -13,6 +13,7 @@ return {
       "css-lsp",
       "prettier",
       "fixjson",
+      "beautysh",
     },
   },
 }

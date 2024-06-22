@@ -8,6 +8,8 @@ local options = {
     sql = { "sql_formatter" },
     xml = { "xmllint" },
     json = { "fixjson" },
+    bash = { "beautysh" },
+    sh = { "beautysh" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
