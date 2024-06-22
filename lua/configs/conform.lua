@@ -7,6 +7,7 @@ local options = {
     javascript = { { "prettierd", "prettier" } },
     sql = { "sql_formatter" },
     xml = { "xmllint" },
+    json = { "fixjson" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
