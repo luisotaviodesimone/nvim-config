@@ -19,6 +19,9 @@ map("v", "<leader>p", '"+p', { desc = "Paste from system buffer" })
 
 -- map("v", "<leader>gd")
 
+-- UndoTree mappings
+map("n", "<leader>u", vim.cmd.UndotreeToggle)
+
 map("n", "<C-b>", ":NvimTreeToggle<CR>", {})
 
 -- Move line up and down
