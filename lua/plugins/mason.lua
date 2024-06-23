@@ -8,6 +8,7 @@ return {
       "pyright",
       "sql-formatter",
       "yaml-language-server",
+      "yamlfix",
       "stylua",
       "html-lsp",
       "css-lsp",

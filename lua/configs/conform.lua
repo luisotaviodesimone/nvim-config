@@ -10,6 +10,7 @@ local options = {
     json = { "fixjson" },
     bash = { "beautysh" },
     sh = { "beautysh" },
+    yaml = { "yamlfix" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
