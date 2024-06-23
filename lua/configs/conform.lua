@@ -1,3 +1,5 @@
+require("custom.utils")
+
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
@@ -10,9 +12,21 @@ local options = {
     json = { "fixjson" },
     bash = { "beautysh" },
     sh = { "beautysh" },
-    yaml = { "yamlfix" },
+    yaml = { "yamlfix", "kubectl_neat" },
     -- css = { "prettier" },
     -- html = { "prettier" },
+  },
+
+  formatters = {
+    kubectl_neat = function()
+      local kubectl_neat_path = os.capture("which kubectl-neat")
+      print(kubectl_neat_path)
+      return {
+        command = require("conform.util").find_executable {
+          kubectl_neat_path,
+        },
+      }
+    end,
   },
 
   -- format_on_save = {
@@ -23,3 +37,11 @@ local options = {
 }
 
 require("conform").setup(options)
+
+-- require("conform").formatters.kubectl_neat = function(bufnr)
+--   return {
+--     command = require("conform.util").find_executable {
+--       "~/.local/bin/kubectl-neat",
+--     },
+--   }
+-- end
