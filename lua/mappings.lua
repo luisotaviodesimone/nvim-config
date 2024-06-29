@@ -6,6 +6,7 @@ local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+map("i", "JK", "<ESC>")
 
 -- Makes it possible to copy to system buffer easier
 map("n", "<leader>y", '"+y', { desc = "Copy to system buffer" })
