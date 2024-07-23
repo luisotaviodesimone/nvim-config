@@ -8,7 +8,9 @@ return {
       "vimdoc",
       "html",
       "css",
-      "yaml"
+      "yaml",
+      "markdown",
+      "markdown_inline",
     },
   },
 }

@@ -15,6 +15,7 @@ return {
       "prettier",
       "fixjson",
       "beautysh",
+      "marksman",
     },
   },
 }
