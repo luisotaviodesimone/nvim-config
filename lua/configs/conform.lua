@@ -14,6 +14,7 @@ local options = {
     sh = { "beautysh" },
     yaml = { "yamlfix", "kubectl_neat" },
     markdown = { "mdformat" },
+    toml = { "taplo" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
