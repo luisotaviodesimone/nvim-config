@@ -18,7 +18,10 @@ map("n", "<leader>Y", '"+Y', { desc = "Copy to system buffer" })
 map("v", "<leader>p", '"+p', { desc = "Paste from system buffer" })
 -- map("n", "<leader>P", "\"+P", { desc = "Paste from system buffer" })
 
--- map("v", "<leader>gd")
+-- LSP Diagnostics API mappings
+map("n", "g]", ":lua vim.diagnostic.goto_next()<CR>", { desc = "LSP Go to next diagnostic" })
+map("n", "g[", ":lua vim.diagnostic.goto_prev()<CR>", { desc = "LSP Go to previous diagnostic" })
+map("n", "go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floating diagnostic message" })
 
 -- UndoTree mappings
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
