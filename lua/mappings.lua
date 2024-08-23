@@ -21,7 +21,8 @@ map("v", "<leader>p", '"+p', { desc = "Paste from system buffer" })
 -- LSP Diagnostics API mappings
 map("n", "g]", ":lua vim.diagnostic.goto_next()<CR>", { desc = "LSP Go to next diagnostic" })
 map("n", "g[", ":lua vim.diagnostic.goto_prev()<CR>", { desc = "LSP Go to previous diagnostic" })
-map("n", "go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floating diagnostic message" })
+map("n","go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floating diagnostic message" })
+map("n","gh", ":lua vim.lsp.buf.hover()<CR>", { desc = "LSP Open selected method description" })
 
 -- UndoTree mappings
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
