@@ -4,6 +4,7 @@ return {
     ensure_installed = {
       "lua-language-server",
       "typescript-language-server",
+      "tailwindcss-language-server",
       "gopls",
       "clangd",
       "pyright",

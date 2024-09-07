@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "gopls", "pyright", "yamlls", "marksman" }
+local servers = { "html", "cssls", "gopls", "pyright", "yamlls", "marksman", "tailwindcss" }
 
 -- LSP settings (for overriding per client)
 local handlers = {
