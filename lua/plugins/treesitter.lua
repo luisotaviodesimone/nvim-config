@@ -5,6 +5,8 @@ return {
       "vim",
       "lua",
       "python",
+      "tsx",
+      "typescript",
       "vimdoc",
       "html",
       "css",
