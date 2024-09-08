@@ -5,6 +5,7 @@ return {
       "lua-language-server",
       "typescript-language-server",
       "tailwindcss-language-server",
+      "emmet-language-server",
       "gopls",
       "clangd",
       "pyright",
