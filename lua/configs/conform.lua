@@ -39,11 +39,3 @@ local options = {
 }
 
 require("conform").setup(options)
-
--- require("conform").formatters.kubectl_neat = function(bufnr)
---   return {
---     command = require("conform.util").find_executable {
---       "~/.local/bin/kubectl-neat",
---     },
---   }
--- end

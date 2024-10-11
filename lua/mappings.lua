@@ -1,4 +1,6 @@
 require "nvchad.mappings"
+local builtin = require "telescope.builtin"
+local custom_telescope = require "configs.telescope"
 
 -- add yours here
 
@@ -21,8 +23,8 @@ map("v", "<leader>p", '"+p', { desc = "Paste from system buffer" })
 -- LSP Diagnostics API mappings
 map("n", "g]", ":lua vim.diagnostic.goto_next()<CR>", { desc = "LSP Go to next diagnostic" })
 map("n", "g[", ":lua vim.diagnostic.goto_prev()<CR>", { desc = "LSP Go to previous diagnostic" })
-map("n","go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floating diagnostic message" })
-map("n","gh", ":lua vim.lsp.buf.hover()<CR>", { desc = "LSP Open selected method description" })
+map("n", "go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floating diagnostic message" })
+map("n", "gh", ":lua vim.lsp.buf.hover()<CR>", { desc = "LSP Open selected method description" })
 
 -- UndoTree mappings
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -33,21 +35,6 @@ map("n", "<C-b>", ":NvimTreeToggle<CR>", {})
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
-local builtin = require "telescope.builtin"
-vim.keymap.set("n", "<leader>ff", function()
-  builtin.find_files {
-    find_command = {
-      "rg",
-      "--files",
-      "--hidden",
-      "--no-ignore-vcs",
-      "-g",
-      "!**/.git/*",
-      "-g",
-      "!**/node_modules/*",
-      "-g",
-      "!**/.repro/*",
-    },
-  }
-end)
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map("n", "<leader>ff", custom_telescope.my_find_files)
+map("n", "<leader>fr", builtin.registers)
+map("n", '<leader>fg', builtin.git_status)
