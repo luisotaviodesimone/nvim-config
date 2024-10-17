@@ -21,7 +21,7 @@ for _, lsp in ipairs(servers) do
     handlers = handlers,
     settings = {
       yaml = {
-        validate = false,
+        validate = true,
         schemaStore = {
           enable = true,
           url = "https://www.schemastore.org/api/json/catalog.json",
