@@ -16,9 +16,5 @@ return {
   opts = {
     suppressed_dirs = { "~/", "~/Downloads", "/" },
     log_level = "error",
-    -- post_restore_cmds = { change_nvim_tree_dir, "NvimTreeOpen" },
-    pre_save_cmds = { "NvimTreeClose" },
-
-    -- log_level = 'debug',
   },
 }

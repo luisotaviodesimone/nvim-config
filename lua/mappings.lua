@@ -38,3 +38,11 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 map("n", "<leader>ff", custom_telescope.my_find_files)
 map("n", "<leader>fr", builtin.registers)
 map("n", '<leader>fg', builtin.git_status)
+
+map("n", "<leader>tt", function()
+  return require("base46").toggle_theme()
+end, { desc = "Toggle Theme" })
+
+map("n", "<leader>tr", function()
+  return require("base46").toggle_transparency()
+end, { desc = "Toggle Transperency" })

@@ -13,6 +13,7 @@ opt.smartindent = true
 
 -- Set clipboard
 o.clipboard = ""
+o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Set tabspaces
 opt.tabstop = 2
