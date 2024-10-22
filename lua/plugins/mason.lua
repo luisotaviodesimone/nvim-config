@@ -13,6 +13,7 @@ return {
       "yaml-language-server",
       "yamlfix",
       "stylua",
+      "jdtls",
       "html-lsp",
       "css-lsp",
       "prettier",
