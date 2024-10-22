@@ -14,6 +14,8 @@ local function my_find_files()
       "!**/node_modules/*",
       "-g",
       "!**/.repro/*",
+      "-g",
+      "!**/target/*",
     },
   }
 end
