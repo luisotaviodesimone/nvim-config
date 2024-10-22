@@ -31,7 +31,7 @@
   "ui": { "branch": "v3.0", "commit": "81f5ff0fb2ce60cc3b2cfc9df928751c2ac4f7e9" },
   "undotree": { "branch": "master", "commit": "78b5241191852ffa9bb5da5ff2ee033160798c3b" },
   "vim-abolish": { "branch": "master", "commit": "dcbfe065297d31823561ba787f51056c147aa682" },
-  "vim-commentary": { "branch": "master", "commit": "c4b8f52cbb7142ec239494e5a2c4a512f92c4d07" },
+  "vim-commentary": { "branch": "master", "commit": "64a654ef4a20db1727938338310209b6a63f60c9" },
   "volt": { "branch": "main", "commit": "229b4f1bc865c866227dd0e2ecda11ab6ec2c8cc" },
   "which-key.nvim": { "branch": "main", "commit": "8badb359f7ab8711e2575ef75dfe6fbbd87e4821" }
 }
