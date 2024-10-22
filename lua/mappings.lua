@@ -1,6 +1,6 @@
 require "nvchad.mappings"
 local builtin = require "telescope.builtin"
-local custom_telescope = require "configs.telescope"
+local my_telescope = require "configs.telescope"
 
 -- unmappings
 local nomap = vim.keymap.del
@@ -37,7 +37,7 @@ map("n", "<C-b>", ":NvimTreeToggle<CR>", {})
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
-map("n", "<leader>ff", custom_telescope.my_find_files)
+map("n", "<leader>ff", my_telescope.my_find_files)
 map("n", "<leader>fr", builtin.registers)
 map("n", "<leader>fg", builtin.git_status)
 
