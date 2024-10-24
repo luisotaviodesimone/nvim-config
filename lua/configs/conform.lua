@@ -15,6 +15,7 @@ local options = {
     yaml = { "yamlfix", "kubectl_neat" },
     markdown = { "mdformat" },
     toml = { "taplo" },
+    nix = { "nixpkgs_fmt" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },

@@ -21,6 +21,7 @@ return {
       "beautysh",
       "marksman",
       "taplo",
+      "nixpkgs-fmt",
     },
   },
 }
