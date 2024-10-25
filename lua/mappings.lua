@@ -1,10 +1,7 @@
 require "nvchad.mappings"
 local builtin = require "telescope.builtin"
 local my_telescope = require "configs.telescope"
-
--- unmappings
-local nomap = vim.keymap.del
--- nomap("n", ";")
+local gitsigns = require "gitsigns"
 
 -- add yours here
 local map = vim.keymap.set
@@ -28,10 +25,15 @@ map("n", "g[", ":lua vim.diagnostic.goto_prev()<CR>", { desc = "LSP Go to previo
 map("n", "go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floating diagnostic message" })
 map("n", "gh", ":lua vim.lsp.buf.hover()<CR>", { desc = "LSP Open selected method description" })
 
+-- GitSigns mappings
+map("v", "<leader>gh", gitsigns.reset_hunk, { desc = "Reset selected git hunk" })
+
 -- UndoTree mappings
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
 
+-- NvimTree mappings
 map("n", "<C-b>", ":NvimTreeToggle<CR>", {})
+map("n", "<leader>co", ":NvimTreeCollapse<CR>", {})
 
 -- Move line up and down
 map("v", "J", ":m '>+1<CR>gv=gv")
