@@ -6,6 +6,20 @@ local gitsigns = require "gitsigns"
 -- add yours here
 local map = vim.keymap.set
 
+-- gitlinker
+map(
+  "n",
+  "<leader>gb",
+  '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>',
+  { desc = "Copy repo url reference to clipboard" }
+)
+map(
+  "v",
+  "<leader>gb",
+  '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>',
+  { desc = "Copy repo url reference to clipboard" }
+)
+
 map("i", "jk", "<ESC>")
 map("i", "JK", "<ESC>")
 
