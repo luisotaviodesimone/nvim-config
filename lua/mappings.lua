@@ -53,7 +53,7 @@ map("n", "<leader>co", ":NvimTreeCollapse<CR>", {})
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
-map("n", "<leader>ff", my_telescope.my_find_files)
+map("n", "<leader>ff", my_telescope.my_find_files, { desc = "Telescope find files function" })
 map("n", "<leader>fr", builtin.registers)
 map("n", "<leader>fg", builtin.git_status)
 
