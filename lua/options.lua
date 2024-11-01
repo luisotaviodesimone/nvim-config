@@ -25,15 +25,15 @@ bo.softtabstop = 2
 opt.hlsearch = true
 
 -- Set persistent undo
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
 opt.undofile = true
 
 -- Set swap directory
-opt.directory = os.getenv("HOME") .. "/.vim/swapdir"
+opt.directory = os.getenv "HOME" .. "/.vim/swapdir"
 opt.swapfile = true
 
 -- Set backup directory
-opt.backupdir = os.getenv("HOME") .. "/.vim/.backup"
+opt.backupdir = os.getenv "HOME" .. "/.vim/.backup"
 opt.backup = true
 
 -- o.cursorlineopt ='both' -- to enable cursorline!
