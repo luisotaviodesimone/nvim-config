@@ -25,12 +25,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- Don't know why, but this prevents vim from returning a non zero exit code on ':wq' leave
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-  callback = function()
-    vim.cmd("sleep 1m")
-  end,
-})
-
-
 return M
