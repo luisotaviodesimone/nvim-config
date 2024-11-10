@@ -53,9 +53,12 @@ map("n", "<leader>co", ":NvimTreeCollapse<CR>", {})
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Telescope Mappings
 map("n", "<leader>ff", my_telescope.my_find_files, { desc = "Telescope find files function" })
 map("n", "<leader>fr", builtin.registers)
 map("n", "<leader>fg", builtin.git_status)
+map("n", "<leader>fg", builtin.git_status)
+map("n", "<leader>fs", my_telescope.get_yaml_schemas(), { desc = "Activate new yaml schemas" })
 
 map("n", "<leader>tt", function()
   return require("base46").toggle_theme()

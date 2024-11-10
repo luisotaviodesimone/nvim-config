@@ -22,35 +22,9 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-lspconfig.yamlls.setup {
-  settings = {
-    yaml = {
-      validate = true,
-      schemaStore = {
-        enable = true,
-        url = "https://www.schemastore.org/api/json/catalog.json",
-      },
-      schemas = {
-        kubernetes = "*.yaml",
-        ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-        ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-        ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.0/all.json"] = "k8s/**",
-        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-        ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-        ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
-        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-        ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-        ["https://json.schemastore.org/gitlab-ci"] = "*-ci*.{yml,yaml}",
-        ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
-        ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*compose*.{yml,yaml}",
-        ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*.application.{yml,yaml}",
-        ["https://raw.githubusercontent.com/argoproj/argo-events/master/api/jsonschema/schema.json"] = "*.application.{yml,yaml}",
-        ["https://raw.githubusercontent.com/argoproj/argo-schema-generator/main/schema/argo_all_k8s_kustomize_schema.json"] = "*.application.{yml,yaml}",
-      },
-    },
-  },
-}
+local yamlls_config = require("configs.yamlls")
+
+lspconfig.yamlls.setup(yamlls_config)
 
 -- c++
 lspconfig.clangd.setup {
@@ -77,4 +51,3 @@ lspconfig.emmet_language_server.setup {
     "typescriptreact",
   },
 }
-
