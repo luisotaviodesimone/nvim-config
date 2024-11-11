@@ -22,7 +22,7 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-local yamlls_config = require("configs.yamlls")
+local yamlls_config = require "configs.yamlls"
 
 lspconfig.yamlls.setup(yamlls_config)
 

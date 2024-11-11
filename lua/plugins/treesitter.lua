@@ -13,7 +13,7 @@ return {
       "yaml",
       "markdown",
       "markdown_inline",
-      "java"
+      "java",
     },
   },
 }

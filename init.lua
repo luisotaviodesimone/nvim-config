@@ -16,7 +16,6 @@ local lazy_config = require "configs.lazy"
 -- load plugins
 require("lazy").setup({
   {
- 
     "NvChad/NvChad",
     lazy = false,
     branch = "v2.5",
@@ -41,6 +40,6 @@ end)
 
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
   callback = function()
-    vim.cmd("sleep 50m")
+    vim.cmd "sleep 50m"
   end,
 })
