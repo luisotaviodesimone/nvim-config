@@ -16,6 +16,7 @@ local options = {
     markdown = { "mdformat" },
     toml = { "taplo" },
     nix = { "nixpkgs_fmt" },
+    terraform = { "tofu_fmt"}
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
