@@ -43,6 +43,7 @@ local cfg = require("yaml-companion").setup {
           select = {
             "kustomization.yaml",
             "GitHub Workflow",
+            "docker-compose.yml",
           },
         },
       },
