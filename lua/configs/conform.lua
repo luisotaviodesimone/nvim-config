@@ -13,10 +13,10 @@ local options = {
     bash = { "beautysh" },
     sh = { "beautysh" },
     yaml = { "yamlfix", "kubectl_neat" },
-    markdown = { "mdformat" },
+    markdown = { "mdformat", "markdown-toc" },
     toml = { "taplo" },
     nix = { "nixpkgs_fmt" },
-    terraform = { "tofu_fmt"}
+    terraform = { "tofu_fmt" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
