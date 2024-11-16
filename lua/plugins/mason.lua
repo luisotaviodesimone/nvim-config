@@ -19,7 +19,6 @@ return {
       "prettier",
       "fixjson",
       "beautysh",
-      "markdown-toc",
       "marksman",
       "taplo",
       "nixpkgs-fmt",
