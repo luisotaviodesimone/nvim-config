@@ -22,7 +22,7 @@ return {
       "marksman",
       "taplo",
       "nixpkgs-fmt",
-      "terraform-ls"
+      "terraform-ls",
     },
   },
 }

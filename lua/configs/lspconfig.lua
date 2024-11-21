@@ -4,7 +4,8 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "ts_ls", "gopls", "pyright", "yamlls", "marksman", "tailwindcss", "jdtls", "terraformls" }
+local servers =
+  { "html", "cssls", "ts_ls", "gopls", "pyright", "yamlls", "marksman", "tailwindcss", "jdtls", "terraformls" }
 
 -- LSP settings (for overriding per client)
 local handlers = {
@@ -34,6 +35,14 @@ lspconfig.clangd.setup {
   end,
   on_init = on_init,
   capabilities = capabilities,
+}
+
+lspconfig.jdtls.setup {
+  cmd = {
+    "jdtls",
+    "--jvm-arg="
+      .. string.format("-javaagent:%s", "/home/luisotaviodesimone/.local/share/nvim/mason/share/jdtls/lombok.jar"),
+  },
 }
 
 -- emmet
