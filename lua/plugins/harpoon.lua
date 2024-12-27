@@ -5,9 +5,9 @@ return {
     "nvim-lua/plenary.nvim",
   },
   config = function()
+    local map = vim.keymap.set
     local ui = require "harpoon.ui"
     local mark = require "harpoon.mark"
-    local map = vim.keymap.set
 
     map("n", "<leader>a", function()
       mark.add_file()
