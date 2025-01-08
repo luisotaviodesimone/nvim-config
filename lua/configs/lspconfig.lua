@@ -58,5 +58,6 @@ lspconfig.emmet_language_server.setup {
     "scss",
     "pug",
     "typescriptreact",
+    "htmldjango",
   },
 }

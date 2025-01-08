@@ -17,6 +17,7 @@ local options = {
     toml = { "taplo" },
     nix = { "nixpkgs_fmt" },
     terraform = { "tofu_fmt" },
+    htmldjango = { "djlint" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
