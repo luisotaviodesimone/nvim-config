@@ -6,6 +6,23 @@ local gitsigns = require "gitsigns"
 -- add yours here
 local map = vim.keymap.set
 
+-- harpoon
+local ui = require "harpoon.ui"
+local mark = require "harpoon.mark"
+
+map("n", "<leader>a", function()
+  mark.add_file()
+end, { desc = "Add file to harpoon" })
+map("n", "<leader>hn", function()
+  ui.nav_next()
+end, { desc = "Navigate to next harpoon file" })
+map("n", "<leader>hp", function()
+  ui.nav_prev()
+end, { desc = "Navigate to previous harpoon file" })
+map("n", "<leader>hm", function()
+  ui.toggle_quick_menu()
+end, { desc = "Toggle harpoon menu" })
+
 -- gitlinker
 map(
   "n",
@@ -13,6 +30,7 @@ map(
   '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>',
   { desc = "Copy repo url reference to clipboard" }
 )
+
 map(
   "v",
   "<leader>gb",
