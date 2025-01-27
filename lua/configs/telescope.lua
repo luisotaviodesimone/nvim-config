@@ -16,6 +16,8 @@ local function my_find_files()
       "!**/.repro/*",
       "-g",
       "!**/target/*",
+      "-g",
+      "!**/.venv/*",
     },
   }
 end
