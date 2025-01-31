@@ -5,6 +5,7 @@ return {
       "beautysh",
       "clangd",
       "css-lsp",
+      "django-template-lsp",
       "djlint",
       "emmet-language-server",
       "fixjson",
@@ -22,8 +23,8 @@ return {
       "taplo",
       "terraform-ls",
       "typescript-language-server",
-      "yaml-language-server",
       "yamlfix",
+      "yaml-language-server",
     },
   },
 }
