@@ -6,6 +6,11 @@ local gitsigns = require "gitsigns"
 -- add yours here
 local map = vim.keymap.set
 
+
+-- oil
+
+map("n", "<leader>o", ":Oil<cr>")
+
 -- harpoon
 local ui = require "harpoon.ui"
 local mark = require "harpoon.mark"
