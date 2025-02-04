@@ -37,3 +37,13 @@ opt.backupdir = os.getenv "HOME" .. "/.vim/.backup"
 opt.backup = true
 
 -- o.cursorlineopt ='both' -- to enable cursorline!
+vim.filetype.add({
+  extension = {
+    gotmpl = 'gotmpl',
+  },
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})
