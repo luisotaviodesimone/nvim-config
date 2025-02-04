@@ -3,7 +3,6 @@ local cfg = require("yaml-companion").setup {
   builtin_matchers = {
     kubernetes = { enabled = true },
   },
-
   -- schemas available in Telescope picker
   schemas = {
     -- not loaded automatically, manually select with
@@ -15,6 +14,10 @@ local cfg = require("yaml-companion").setup {
     {
       name = "SealedSecret",
       uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/bitnami.com/sealedsecret_v1alpha1.json",
+    },
+    {
+      name = "Cloud Init",
+      uri = "https://raw.githubusercontent.com/canonical/cloud-init/main/cloudinit/config/schemas/versions.schema.cloud-config.json",
     },
     -- schemas below are automatically loaded, but added
     -- them here so that they show up in the statusline
