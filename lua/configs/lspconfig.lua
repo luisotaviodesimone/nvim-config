@@ -78,14 +78,6 @@ lspconfig.clangd.setup {
   capabilities = capabilities,
 }
 
-lspconfig.jdtls.setup {
-  cmd = {
-    "jdtls",
-    "--jvm-arg="
-      .. string.format("-javaagent:%s", "/home/luisotaviodesimone/.local/share/nvim/mason/share/jdtls/lombok.jar"),
-  },
-}
-
 -- emmet
 lspconfig.emmet_language_server.setup {
   filetypes = {
