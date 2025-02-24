@@ -18,6 +18,8 @@ local options = {
     nix = { "nixpkgs_fmt" },
     terraform = { "tofu_fmt" },
     htmldjango = { "djlint" },
+    -- wget https://github.com/google/google-java-format/releases/download/v1.25.2/google-java-format-1.25.2-all-deps.jar && mv google-java-format-1.25.2-all-deps.jar ~/.local/bin
+    java = { "java ~/.local/bin/google-java-format-1.25.2-all-deps.jar -i" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
