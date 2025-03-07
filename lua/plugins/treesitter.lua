@@ -6,6 +6,7 @@ return {
       "go",
       "html",
       "java",
+      "javascript",
       "lua",
       "markdown",
       "markdown_inline",
