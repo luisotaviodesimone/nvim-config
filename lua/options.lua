@@ -10,6 +10,8 @@ opt.nu = true
 opt.relativenumber = true
 
 opt.smartindent = true
+vim.opt.listchars = { trail = "·" }
+vim.opt.list = true
 
 -- Set clipboard
 o.clipboard = ""
@@ -37,13 +39,13 @@ opt.backupdir = os.getenv "HOME" .. "/.vim/.backup"
 opt.backup = true
 
 -- o.cursorlineopt ='both' -- to enable cursorline!
-vim.filetype.add({
+vim.filetype.add {
   extension = {
-    gotmpl = 'gotmpl',
+    gotmpl = "gotmpl",
   },
   pattern = {
     [".*/templates/.*%.tpl"] = "helm",
     [".*/templates/.*%.ya?ml"] = "helm",
     ["helmfile.*%.ya?ml"] = "helm",
   },
-})
+}
