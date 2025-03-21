@@ -8,10 +8,12 @@ local bo = vim.bo
 
 opt.nu = true
 opt.relativenumber = true
-
 opt.smartindent = true
-vim.opt.listchars = { trail = "·" }
-vim.opt.list = true
+
+-- Set character list for certain invisible characters
+opt.listchars = { trail = "·" }
+opt.list = true
+
 
 -- Set clipboard
 o.clipboard = ""
