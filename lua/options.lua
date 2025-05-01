@@ -11,9 +11,8 @@ opt.relativenumber = true
 opt.smartindent = true
 
 -- Set character list for certain invisible characters
-opt.listchars = { trail = "·" }
+opt.listchars = { trail = "·", tab = "  " }
 opt.list = true
-
 
 -- Set clipboard
 o.clipboard = ""
