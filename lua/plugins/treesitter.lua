@@ -5,6 +5,8 @@ return {
       "bash",
       "css",
       "go",
+      "gotmpl",
+      "helm",
       "html",
       "java",
       "javascript",
