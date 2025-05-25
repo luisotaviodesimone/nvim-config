@@ -14,6 +14,7 @@ local servers = {
   "marksman",
   "tailwindcss",
   "jdtls",
+  "helm_ls",
   "terraformls",
 }
 
