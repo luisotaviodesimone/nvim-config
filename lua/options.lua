@@ -1,10 +1,9 @@
-require "nvchad.options"
-
--- add yours here!
+-- require "nvchad.options"
 
 local opt = vim.opt
 local o = vim.o
 local bo = vim.bo
+local g = vim.g
 
 opt.nu = true
 opt.relativenumber = true
@@ -17,6 +16,9 @@ opt.list = true
 -- Set clipboard
 o.clipboard = ""
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- interval for writing swap file to disk, also used by gitsigns
+o.updatetime = 250
 
 -- Set tabspaces
 opt.tabstop = 2
@@ -38,6 +40,22 @@ opt.swapfile = true
 -- Set backup directory
 opt.backupdir = os.getenv "HOME" .. "/.vim/.backup"
 opt.backup = true
+
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+opt.whichwrap:append "<>[]hl"
+
+-- add binaries installed by mason.nvim to path
+local is_windows = vim.fn.has "win32" ~= 0
+local sep = is_windows and "\\" or "/"
+local delim = is_windows and ";" or ":"
+vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
+
+-- Do not know what what these are for
+o.signcolumn = "yes"
+o.splitbelow = true
+o.splitright = true
+o.timeoutlen = 400
 
 -- o.cursorlineopt ='both' -- to enable cursorline!
 vim.filetype.add {
