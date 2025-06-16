@@ -114,6 +114,19 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 map("n", "<C-u>", "<C-u>zz")
 map("n", "<C-d>", "<C-d>zz")
 
+-- tabufline
+map("n", "<tab>", function()
+  require("nvchad.tabufline").next()
+end, { desc = "buffer goto next" })
+
+map("n", "<S-tab>", function()
+  require("nvchad.tabufline").prev()
+end, { desc = "buffer goto prev" })
+
+map("n", "<leader>x", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "buffer close" })
+
 -- Telescope Mappings
 map("n", "<leader>ff", my_telescope.my_find_files, { desc = "Telescope find files function" })
 map("n", "<leader>fr", builtin.registers)
