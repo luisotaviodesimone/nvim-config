@@ -46,10 +46,11 @@ autocmd({ "BufReadPost", "BufNewFile" }, {
     local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
 
     -- if not vim.g.ui_entered and args.event == "UIEnter" then
-      vim.g.ui_entered = true
+      -- vim.g.ui_entered = true
     -- end
 
-    if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
+    -- if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
+    if file ~= "" and buftype ~= "nofile" then
       vim.api.nvim_exec_autocmds("User", { pattern = "FilePost", modeline = false })
       -- vim.api.nvim_del_augroup_by_name "NvFilePost"
 
