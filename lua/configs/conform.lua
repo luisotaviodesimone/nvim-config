@@ -10,6 +10,7 @@ local options = {
     sql = { "sql_formatter" },
     xml = { "xmllint" },
     json = { "fixjson" },
+    jsonc = { "fixjson" },
     bash = { "beautysh" },
     sh = { "beautysh" },
     yaml = { "yamlfix", "kubectl_neat" },
