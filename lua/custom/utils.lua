@@ -26,6 +26,16 @@ local function dump(o)
   end
 end
 
+local function get_file_name()
+  local file = vim.fn.expand "%:t"
+  if file == "" then
+    return nil
+  end
+  return file
+end
+
+
 return {
   dump = dump,
+  get_file_name = get_file_name,
 }

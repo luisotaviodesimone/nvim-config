@@ -4,6 +4,8 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
+local utils = require "utils"
+
 local servers = {
   "html",
   "cssls",
@@ -37,7 +39,8 @@ end
 -- local yamlls_config = require "configs.yamlls"
 
 -- lspconfig.yamlls.setup(yamlls_config)
-lspconfig.yamlls.setup {
+
+local yamlls_config = {
   settings = {
     yaml = {
       schemaStore = {
@@ -45,13 +48,11 @@ lspconfig.yamlls.setup {
         url = "https://www.schemastore.org/api/json/catalog.json",
       },
       schemas = {
-        kubernetes = "*.yaml",
         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+        ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "*/*play*/*/*.yml",
         ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
         ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-        ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
         ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
         ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
         ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*-ci*.{yml,yaml}",
@@ -59,7 +60,7 @@ lspconfig.yamlls.setup {
         ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*compose*.{yml,yaml}",
         ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/application_v1alpha1.json"] = "*.application.{yml,yaml}",
       },
-      validate = false,
+      validate = true,
       completion = true,
       hover = true,
       format = {
@@ -68,6 +69,28 @@ lspconfig.yamlls.setup {
     },
   },
 }
+
+-- get file name to add schemas
+local function add_schemas()
+  local file_name = utils.get_file_name()
+  if not file_name then
+    return
+  end
+
+  local schemas = yamlls_config.settings.yaml.schemas
+  if not file_name:match ".*compose*.*" then
+    schemas["kubernetes"] = "*"
+  end
+end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.yml", "*.yaml" },
+  callback = function()
+    add_schemas()
+  end,
+})
+
+lspconfig.yamlls.setup(yamlls_config)
 
 -- c++
 lspconfig.clangd.setup {
