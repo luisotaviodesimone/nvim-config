@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local utils = require "utils"
+local get_file_name = require("custom.utils").get_file_name
 
 local servers = {
   "html",
@@ -72,7 +72,7 @@ local yamlls_config = {
 
 -- get file name to add schemas
 local function add_schemas()
-  local file_name = utils.get_file_name()
+  local file_name = get_file_name()
   if not file_name then
     return
   end
