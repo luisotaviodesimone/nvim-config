@@ -82,3 +82,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   pattern = { "terraform", "hcl" },
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"c", "cpp"},
+  callback = function()
+    vim.opt_local.commentstring = "/* %s */" -- Changes the comment string to use // style
+  end,
+})
