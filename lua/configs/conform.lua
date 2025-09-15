@@ -21,6 +21,7 @@ local options = {
     htmldjango = { "djlint" },
     -- wget https://github.com/google/google-java-format/releases/download/v1.25.2/google-java-format-1.25.2-all-deps.jar && mv google-java-format-1.25.2-all-deps.jar ~/.local/bin
     java = { "java ~/.local/bin/google-java-format-1.25.2-all-deps.jar -i" },
+    make = { "format_makefile" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
@@ -33,6 +34,14 @@ local options = {
         command = require("conform.util").find_executable {
           kubectl_neat_path,
         },
+      }
+    end,
+    format_makefile = function()
+      local current_file = vim.api.nvim_buf_get_name(0)
+      return {
+        command = "mbake",
+        args = { "format", current_file },
+        stdin = false,
       }
     end,
   },
