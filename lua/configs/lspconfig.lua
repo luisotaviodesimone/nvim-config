@@ -5,6 +5,7 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 local get_file_name = require("custom.utils").get_file_name
+local is_avoidable = require("custom.utils").is_avoidable
 
 local servers = {
   "html",
@@ -78,7 +79,13 @@ local function add_schemas()
   end
 
   local schemas = yamlls_config.settings.yaml.schemas
-  if not file_name:match ".*compose*.*" then
+
+  local avoidable_patterns = {
+    ".*compose*.*",
+    "*-ci*.*",
+  }
+
+  if not is_avoidable(file_name, avoidable_patterns) then
     schemas["kubernetes"] = "*"
   end
 end

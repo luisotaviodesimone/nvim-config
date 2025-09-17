@@ -34,8 +34,18 @@ local function get_file_name()
   return file
 end
 
+local function is_avoidable(file_name, patterns)
+  for _, pattern in ipairs(patterns) do
+    if file_name:match(pattern) then
+      return true
+    end
+  end
+  return false
+end
+
 
 return {
   dump = dump,
   get_file_name = get_file_name,
+  is_avoidable = is_avoidable,
 }
