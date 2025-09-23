@@ -53,4 +53,5 @@ local options = {
   -- },
 }
 
+vim.env.YAMLFIX_WHITELINES = "1"
 require("conform").setup(options)

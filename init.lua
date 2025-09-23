@@ -46,7 +46,7 @@ autocmd({ "BufReadPost", "BufNewFile" }, {
     local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
 
     -- if not vim.g.ui_entered and args.event == "UIEnter" then
-      -- vim.g.ui_entered = true
+    -- vim.g.ui_entered = true
     -- end
 
     -- if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"c", "cpp"},
+  pattern = { "c", "cpp" },
   callback = function()
     vim.opt_local.commentstring = "/* %s */" -- Changes the comment string to use // style
   end,
