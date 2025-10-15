@@ -109,6 +109,20 @@ lspconfig.clangd.setup {
   capabilities = capabilities,
 }
 
+lspconfig.eslint.setup {
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = true
+    on_attach(client, bufnr)
+  end,
+  on_init = on_init,
+  capabilities = capabilities,
+}
+
+lspconfig.prismals.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
 -- emmet
 lspconfig.emmet_language_server.setup {
   filetypes = {

@@ -6,7 +6,9 @@ local options = {
     -- Conform will run multiple formatters sequentially
     python = { "isort", "black" },
     -- Use a sub-list to run only the first available formatter
-    typescriptreact = { "prettier" },
+    typescriptreact = { "prettierd", "prettier" },
+    typescript = { "prettierd", "prettier" },
+    javascript = { "prettierd", "prettier" },
     sql = { "sql_formatter" },
     xml = { "xmllint" },
     json = { "fixjson" },

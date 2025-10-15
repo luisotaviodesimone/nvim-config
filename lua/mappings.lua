@@ -91,6 +91,7 @@ map("n", "g]", ":lua vim.diagnostic.goto_next()<CR>", { desc = "LSP Go to next d
 map("n", "g[", ":lua vim.diagnostic.goto_prev()<CR>", { desc = "LSP Go to previous diagnostic" })
 map("n", "go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floating diagnostic message" })
 map("n", "gh", ":lua vim.lsp.buf.hover()<CR>", { desc = "LSP Open selected method description" })
+map("n", "ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "LSP Get code actions" })
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
 -- Comment
