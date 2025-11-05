@@ -19,6 +19,7 @@ local servers = {
   "jdtls",
   "helm_ls",
   "terraformls",
+  "vue_ls",
 }
 
 -- LSP settings (for overriding per client)
