@@ -16,7 +16,7 @@ local options = {
     bash = { "beautysh" },
     sh = { "beautysh" },
     yaml = { "yamlfix", "kubectl_neat" },
-    -- markdown = { "mdformat" },
+    markdown = { "mdformat" },
     toml = { "taplo" },
     nix = { "nixpkgs_fmt" },
     terraform = { "tofu_fmt" },
@@ -56,4 +56,9 @@ local options = {
 }
 
 vim.env.YAMLFIX_WHITELINES = "1"
+
+require("conform").formatters.mdformat = {
+  append_args = { "--number" },
+}
+
 require("conform").setup(options)
