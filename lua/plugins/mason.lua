@@ -23,6 +23,7 @@ return {
       "taplo",
       "terraform-ls",
       "typescript-language-server",
+      "vue-language-server",
       "yamlfix",
       "yaml-language-server",
     },
