@@ -107,48 +107,48 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-lspconfig.yamlls.setup(yamlls_config)
--- vim.lsp.config("yamlls", yamlls_config)
+-- lspconfig.yamlls.setup(yamlls_config)
+vim.lsp.config("yamlls", yamlls_config)
 
 -- c++
-lspconfig.clangd.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.signatureHelper = false
-    on_attach(client, bufnr)
-  end,
-  on_init = on_init,
-  capabilities = capabilities,
-}
+-- lspconfig.clangd.setup {
+--   on_attach = function(client, bufnr)
+--     client.server_capabilities.signatureHelper = false
+--     on_attach(client, bufnr)
+--   end,
+--   on_init = on_init,
+--   capabilities = capabilities,
+-- }
 
-lspconfig.eslint.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = true
-    on_attach(client, bufnr)
-  end,
-  on_init = on_init,
-  capabilities = capabilities,
-}
+-- lspconfig.eslint.setup {
+--   on_attach = function(client, bufnr)
+--     client.server_capabilities.documentFormattingProvider = true
+--     on_attach(client, bufnr)
+--   end,
+--   on_init = on_init,
+--   capabilities = capabilities,
+-- }
 
-lspconfig.prismals.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
--- emmet
-lspconfig.emmet_language_server.setup {
-  filetypes = {
-    "css",
-    "eruby",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "less",
-    "sass",
-    "scss",
-    "pug",
-    "typescriptreact",
-    "htmldjango",
-  },
-}
+-- lspconfig.prismals.setup {
+--   on_attach = on_attach,
+--   on_init = on_init,
+--   capabilities = capabilities,
+-- }
+-- -- emmet
+-- lspconfig.emmet_language_server.setup {
+--   filetypes = {
+--     "css",
+--     "eruby",
+--     "html",
+--     "javascript",
+--     "javascriptreact",
+--     "less",
+--     "sass",
+--     "scss",
+--     "pug",
+--     "typescriptreact",
+--     "htmldjango",
+--   },
+-- }
 
 vim.lsp.enable(servers)
