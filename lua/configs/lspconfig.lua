@@ -7,10 +7,13 @@ local lspconfig = require "lspconfig"
 local get_file_name = require("custom.utils").get_file_name
 local is_avoidable = require("custom.utils").is_avoidable
 
+require("nvchad.configs.lspconfig").defaults()
+
 local servers = {
   "html",
   "cssls",
-  "ts_ls",
+  "vtsls",
+  -- "ts_ls",
   "gopls",
   "pyright",
   "yamlls",
@@ -19,24 +22,30 @@ local servers = {
   "jdtls",
   "helm_ls",
   "terraformls",
-  "vue_ls",
+  "volar",
 }
 
--- LSP settings (for overriding per client)
-local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+local vue_language_server_path = vim.fn.stdpath "data"
+  .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+local vue_plugin = {
+  name = "@vue/typescript-plugin",
+  location = vue_language_server_path,
+  languages = { "vue" },
+  configNamespace = "typescript",
 }
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-    handlers = handlers,
-  }
-end
+vim.lsp.config("vtsls", {
+  settings = {
+    vtsls = {
+      tsserver = {
+        globalPlugins = {
+          vue_plugin,
+        },
+      },
+    },
+  },
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+})
 
 -- local yamlls_config = require "configs.yamlls"
 
@@ -99,6 +108,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 lspconfig.yamlls.setup(yamlls_config)
+-- vim.lsp.config("yamlls", yamlls_config)
 
 -- c++
 lspconfig.clangd.setup {
@@ -140,3 +150,5 @@ lspconfig.emmet_language_server.setup {
     "htmldjango",
   },
 }
+
+vim.lsp.enable(servers)
