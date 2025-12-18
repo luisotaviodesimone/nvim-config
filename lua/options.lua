@@ -26,6 +26,11 @@ opt.shiftwidth = 2
 opt.expandtab = true
 bo.softtabstop = 2
 
+-- Make borders rounded
+g.border_style = "rounded"
+o.termguicolors = true
+o.winborder = "rounded"
+
 -- Set highlight on search
 opt.hlsearch = true
 
