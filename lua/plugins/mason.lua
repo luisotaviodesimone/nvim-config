@@ -17,6 +17,7 @@ return {
       "nixpkgs-fmt",
       "prettier",
       "pyright",
+      "rust-analyzer",
       "sql-formatter",
       "stylua",
       "tailwindcss-language-server",

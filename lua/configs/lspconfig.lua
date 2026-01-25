@@ -13,7 +13,7 @@ local servers = {
   "html",
   "cssls",
   "vtsls",
-  -- "ts_ls",
+  "rust_analyzer",
   "gopls",
   "pyright",
   "yamlls",
