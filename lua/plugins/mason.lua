@@ -8,6 +8,7 @@ return {
       "django-template-lsp",
       "djlint",
       "emmet-language-server",
+      "eslint_d",
       "fixjson",
       "gopls",
       "html-lsp",

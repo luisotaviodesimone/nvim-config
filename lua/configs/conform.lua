@@ -9,6 +9,7 @@ local options = {
     typescriptreact = { "prettierd", "prettier" },
     typescript = { "prettierd", "prettier" },
     javascript = { "prettierd", "prettier" },
+    vue = { "prettierd", "prettier" },
     sql = { "sql_formatter" },
     xml = { "xmllint" },
     json = { "fixjson" },

@@ -1,12 +1,11 @@
-local get_file_name = require("custom.utils").get_file_name
-local is_avoidable = require("custom.utils").is_avoidable
 local utils = require "custom.utils"
-
+local yamlls_config = require "configs.yamlls"
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = {
   "html",
   "cssls",
+  "eslint", -- for this lsp, mason doesn't have a server, so we need to install it globally with npm with `npm install -g vscode-langservers-extracted`
   "vtsls",
   "rust_analyzer",
   "gopls",
@@ -30,6 +29,8 @@ local vue_plugin = {
   configNamespace = "typescript",
 }
 
+vim.lsp.config("yamlls", yamlls_config)
+
 vim.lsp.config("vtsls", {
   settings = {
     vtsls = {
@@ -43,63 +44,17 @@ vim.lsp.config("vtsls", {
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 })
 
-local yamlls_config = {
-  settings = {
-    yaml = {
-      schemaStore = {
-        enable = true,
-        url = "https://www.schemastore.org/api/json/catalog.json",
-      },
-      schemas = {
-        -- ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-        -- ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-        -- ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "*/*play*/*/*.yml",
-        -- ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-        -- ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-        -- ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-        -- ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-        ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*-ci*.{yml,yaml}",
-        -- ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
-        -- ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*compose*.{yml,yaml}",
-        -- ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/application_v1alpha1.json"] = "*.application.{yml,yaml}",
-      },
-      validate = true,
-      completion = true,
-      hover = true,
-      format = {
-        enabled = false,
-      },
-    },
-  },
-}
+local base_on_attach = vim.lsp.config.eslint.on_attach
+vim.lsp.config("eslint", {
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+  on_attach = function(client, bufnr)
+    if not base_on_attach then
+      return
+    end
 
--- get file name to add schemas
-local function add_schemas()
-  local file_name = get_file_name()
-  if not file_name then
-    return
-  end
-
-  local schemas = yamlls_config.settings.yaml.schemas
-
-  local avoidable_patterns = {
-    ".*compose*.*",
-    "*-ci*.*",
-  }
-
-  if not is_avoidable(file_name, avoidable_patterns) then
-    schemas["kubernetes"] = "*"
-  end
-end
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.yml", "*.yaml" },
-  callback = function()
-    add_schemas()
+    base_on_attach(client, bufnr)
   end,
 })
-
-vim.lsp.config("yamlls", yamlls_config)
 
 vim.lsp.enable(servers)
 
@@ -150,14 +105,13 @@ local methods_n_keymaps = {
 }
 
 local function on_lsp_attach(callback)
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-    callback(client, args.buf, methods_n_keymaps)
-  end,
-})
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+      callback(client, args.buf, methods_n_keymaps)
+    end,
+  })
 end
-
 
 vim.api.nvim_create_autocmd("CursorMoved", {
   callback = function()
@@ -173,4 +127,3 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 return {
   on_lsp_attach = on_lsp_attach,
 }
-
