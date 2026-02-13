@@ -26,6 +26,10 @@ opt.shiftwidth = 2
 opt.expandtab = true
 bo.softtabstop = 2
 
+-- Set folding options
+opt.foldmethod = "manual"
+opt.foldcolumn = "1"
+
 -- Make borders rounded
 g.border_style = "rounded"
 o.termguicolors = true
