@@ -2,6 +2,7 @@
 local builtin = require "telescope.builtin"
 local my_telescope = require "configs.telescope"
 local gitsigns = require "gitsigns"
+local lspconfig = require "configs.lspconfig"
 
 -- add yours here
 local map = vim.keymap.set
@@ -93,6 +94,19 @@ map("n", "go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floati
 map("n", "gh", ":lua vim.lsp.buf.hover()<CR>", { desc = "LSP Open selected method description" })
 map("n", "ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "LSP Get code actions" })
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+
+lspconfig.on_lsp_attach(function(client, buf, methods_n_keymaps)
+  for method, mapping in pairs(methods_n_keymaps) do
+    if client.supports_method(method) then
+      local mode = mapping.mode or "n"
+      local lhs = mapping.lhs
+      local rhs = mapping.rhs
+      local opts = mapping.opts
+      opts.buffer = buf
+      vim.keymap.set(mode, lhs, rhs, opts)
+    end
+  end
+end)
 
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })

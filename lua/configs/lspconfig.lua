@@ -1,11 +1,6 @@
--- EXAMPLE
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
-
-local lspconfig = require "lspconfig"
 local get_file_name = require("custom.utils").get_file_name
 local is_avoidable = require("custom.utils").is_avoidable
+local utils = require "custom.utils"
 
 require("nvchad.configs.lspconfig").defaults()
 
@@ -27,6 +22,7 @@ local servers = {
 
 local vue_language_server_path = vim.fn.stdpath "data"
   .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
 local vue_plugin = {
   name = "@vue/typescript-plugin",
   location = vue_language_server_path,
@@ -46,10 +42,6 @@ vim.lsp.config("vtsls", {
   },
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 })
-
--- local yamlls_config = require "configs.yamlls"
-
--- lspconfig.yamlls.setup(yamlls_config)
 
 local yamlls_config = {
   settings = {
@@ -107,48 +99,78 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- lspconfig.yamlls.setup(yamlls_config)
 vim.lsp.config("yamlls", yamlls_config)
 
--- c++
--- lspconfig.clangd.setup {
---   on_attach = function(client, bufnr)
---     client.server_capabilities.signatureHelper = false
---     on_attach(client, bufnr)
---   end,
---   on_init = on_init,
---   capabilities = capabilities,
--- }
-
--- lspconfig.eslint.setup {
---   on_attach = function(client, bufnr)
---     client.server_capabilities.documentFormattingProvider = true
---     on_attach(client, bufnr)
---   end,
---   on_init = on_init,
---   capabilities = capabilities,
--- }
-
--- lspconfig.prismals.setup {
---   on_attach = on_attach,
---   on_init = on_init,
---   capabilities = capabilities,
--- }
--- -- emmet
--- lspconfig.emmet_language_server.setup {
---   filetypes = {
---     "css",
---     "eruby",
---     "html",
---     "javascript",
---     "javascriptreact",
---     "less",
---     "sass",
---     "scss",
---     "pug",
---     "typescriptreact",
---     "htmldjango",
---   },
--- }
-
 vim.lsp.enable(servers)
+
+--- @class LspKeymap
+--- @field mode string
+--- @field lhs string
+--- @field rhs function
+--- @field opts? vim.keymap.set.Opts
+
+--- @type table<string, LspKeymap>
+local methods_n_keymaps = {
+  ["textDocument/definition"] = {
+    mode = "n",
+    lhs = "gd",
+    rhs = function()
+      vim.g["textDocument/definition"] = true
+      vim.lsp.buf.definition()
+    end,
+    opts = { desc = "LSP Go to definition" },
+  },
+  ["textDocument/declaration"] = {
+    mode = "n",
+    lhs = "gD",
+    rhs = function()
+      vim.g["textDocument/declaration"] = true
+      vim.lsp.buf.declaration()
+    end,
+    opts = { desc = "LSP Go to declaration" },
+  },
+  ["textDocument/implementation"] = {
+    mode = "n",
+    lhs = "gi",
+    rhs = function()
+      vim.g["textDocument/implementation"] = true
+      vim.lsp.buf.implementation()
+    end,
+    opts = { desc = "LSP Go to implementation" },
+  },
+  ["textDocument/references"] = {
+    mode = "n",
+    lhs = "gr",
+    rhs = function()
+      vim.g["textDocument/references"] = true
+      vim.lsp.buf.references()
+    end,
+    opts = { desc = "LSP Go to references" },
+  },
+}
+
+local function on_lsp_attach(callback)
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    callback(client, args.buf, methods_n_keymaps)
+  end,
+})
+end
+
+
+vim.api.nvim_create_autocmd("CursorMoved", {
+  callback = function()
+    for method, _ in pairs(methods_n_keymaps) do
+      if vim.g[method] then
+        vim.cmd "normal! zz"
+        vim.g[method] = false
+      end
+    end
+  end,
+})
+
+return {
+  on_lsp_attach = on_lsp_attach,
+}
+
