@@ -13,6 +13,8 @@ local function my_find_files()
       "-g",
       "!**/node_modules/*",
       "-g",
+      "!**/dist/*",
+      "-g",
       "!**/.repro/*",
       "-g",
       "!**/target/*",
