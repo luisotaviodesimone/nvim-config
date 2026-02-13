@@ -11,6 +11,7 @@ return {
       "java",
       "javascript",
       "lua",
+      "luadoc",
       "markdown",
       "markdown_inline",
       "python",
