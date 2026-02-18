@@ -44,18 +44,6 @@ vim.lsp.config("vtsls", {
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 })
 
-local base_on_attach = vim.lsp.config.eslint.on_attach
-vim.lsp.config("eslint", {
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-  on_attach = function(client, bufnr)
-    if not base_on_attach then
-      return
-    end
-
-    base_on_attach(client, bufnr)
-  end,
-})
-
 vim.lsp.enable(servers)
 
 --- @class LspKeymap

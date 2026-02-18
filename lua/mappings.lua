@@ -169,6 +169,7 @@ map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = 
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
+map("n", "<leader>fp", "<cmd>Telescope session-lens<CR>", { desc = "telescope search project sessions" })
 
 map("n", "<leader>tt", function()
   return require("base46").toggle_theme()
