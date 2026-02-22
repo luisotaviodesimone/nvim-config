@@ -1,4 +1,3 @@
-
 local M = {
   "kndndrj/nvim-dbee",
   cmd = { "Dbee" },
@@ -18,4 +17,4 @@ local M = {
 
 function M.configure(conns) end
 
-return M
+return {}
