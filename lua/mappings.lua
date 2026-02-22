@@ -18,7 +18,6 @@ map("n", "[t", function()
 end, { desc = "Previous todo comment" })
 
 -- oil
-
 map("n", "<leader>o", ":Oil<cr>")
 
 -- harpoon
@@ -37,6 +36,11 @@ end, { desc = "Navigate to previous harpoon file" })
 map("n", "<leader>hm", function()
   ui.toggle_quick_menu()
 end, { desc = "Toggle harpoon menu" })
+
+-- DadBod
+map("n", "<leader>db", function()
+  vim.cmd.DBUIToggle()
+end, { desc = "Toggle DadBod UI" })
 
 -- gitlinker
 map(
@@ -143,11 +147,11 @@ map("n", "<C-u>", "<C-u>zz")
 map("n", "<C-d>", "<C-d>zz")
 
 -- tabufline
-map("n", "<tab>", function()
+map("n", "<leader><tab>", function()
   require("nvchad.tabufline").next()
 end, { desc = "buffer goto next" })
 
-map("n", "<S-tab>", function()
+map("n", "<leader><S-tab>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "buffer goto prev" })
 
