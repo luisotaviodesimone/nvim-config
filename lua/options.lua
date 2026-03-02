@@ -33,6 +33,7 @@ opt.foldcolumn = "1"
 -- Make borders rounded
 g.border_style = "rounded"
 o.termguicolors = true
+opt.termguicolors = true
 o.winborder = "rounded"
 
 -- Set highlight on search

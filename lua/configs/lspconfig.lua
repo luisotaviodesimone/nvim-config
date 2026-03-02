@@ -1,4 +1,3 @@
-local utils = require "custom.utils"
 local yamlls_config = require "configs.yamlls"
 require("nvchad.configs.lspconfig").defaults()
 
