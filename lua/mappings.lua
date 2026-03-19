@@ -138,6 +138,9 @@ map("v", "<leader>gh", gitsigns.reset_hunk, { desc = "Reset selected git hunk" }
 -- UndoTree mappings
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
 
+-- NvimTree
+map("n", "<C-b>", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+
 -- Move selected line up and down
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
