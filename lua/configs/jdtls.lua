@@ -1,17 +1,16 @@
+local home = os.getenv "HOME"
+local sdkman_java_path = home .. "/.sdkman/candidates/java"
+
+local java_21_path = sdkman_java_path .. "/21.0.10-amzn"
+local java_17_path = sdkman_java_path .. "/17.0.17-amzn"
+
 local opts = {
-  cmd = {},
   settings = {
     java = {
       signatureHelp = { enabled = true },
       completion = {
         favoriteStaticMembers = {},
-        filteredTypes = {
-          -- "com.sun.*",
-          -- "io.micrometer.shaded.*",
-          -- "java.awt.*",
-          -- "jdk.*",
-          -- "sun.*",
-        },
+        filteredTypes = {},
       },
       sources = {
         organizeImports = {
@@ -25,23 +24,18 @@ local opts = {
         },
         useBlocks = true,
       },
-      -- configuration = {
-      --   runtimes = {
-      --     {
-      --       name = "JavaSE-1.8",
-      --       path = "/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home",
-      --       default = true,
-      --     },
-      --     {
-      --       name = "JavaSE-17",
-      --       path = "/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home",
-      --     },
-      --     {
-      --       name = "JavaSE-19",
-      --       path = "/Library/Java/JavaVirtualMachines/jdk-19.jdk/Contents/Home",
-      --     },
-      --   },
-      -- },
+      configuration = {
+        runtimes = {
+          {
+            name = "JavaSE-17",
+            path = java_17_path,
+          },
+          {
+            name = "JavaSE-21",
+            path = java_21_path,
+          },
+        },
+      },
     },
   },
 }
@@ -49,38 +43,49 @@ local opts = {
 local function setup()
   local pkg_status, jdtls = pcall(require, "jdtls")
   if not pkg_status then
-    vim.notify("unable to load nvim-jdtls", "error")
-    return {}
+    vim.notify("nvim-jdtls not installed", vim.log.levels.ERROR)
+    return
   end
 
-  -- local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
-  local jdtls_bin = vim.fn.stdpath "data" .. "/mason/bin/jdtls"
+  local jdtls_install_path = vim.fn.stdpath "data" .. "/mason/packages/jdtls"
 
-  local root_markers = { ".gradle", "gradlew", ".git" }
+  local root_markers = { ".gradle", "gradlew", "mvnw", "pom.xml", "build.gradle", ".git" }
   local root_dir = jdtls.setup.find_root(root_markers)
-  local home = os.getenv "HOME"
+  if not root_dir then
+    root_dir = vim.fn.getcwd()
+  end
+
   local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
   local workspace_dir = home .. "/.cache/jdtls/workspace/" .. project_name
 
-  opts.cmd = {
-    jdtls_bin,
-    "-data",
-    workspace_dir,
+  -- Use Java 21 to RUN jdtls (required), but project uses Java 17
+  local cmd = {
+    java_21_path .. "/bin/java",
+    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+    "-Dosgi.bundles.defaultStartLevel=4",
+    "-Declipse.product=org.eclipse.jdt.ls.core.product",
+    "-Dlog.protocol=true",
+    "-Dlog.level=ALL",
+    "-Xmx1g",
+    "--add-modules=ALL-SYSTEM",
+    "--add-opens", "java.base/java.util=ALL-UNNAMED",
+    "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+    "-jar", vim.fn.glob(jdtls_install_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+    "-configuration", jdtls_install_path .. "/config_linux",
+    "-data", workspace_dir,
   }
 
-  local on_attach = function(client, bufnr)
-    jdtls.setup.add_commands() -- important to ensure you can update configs when build is updated
-    -- if you setup DAP according to https://github.com/mfussenegger/nvim-jdtls#nvim-dap-configuration you can uncomment below
-    -- jdtls.setup_dap({ hotcodereplace = "auto" })
-    -- jdtls.dap.setup_dap_main_class_configs()
+  local config = vim.tbl_deep_extend("force", opts, {
+    cmd = cmd,
+    root_dir = root_dir,
+    capabilities = vim.lsp.protocol.make_client_capabilities(),
+    on_attach = function(client, bufnr)
+      jdtls.setup.add_commands()
+      -- Add any additional on_attach logic here
+    end,
+  })
 
-    -- you may want to also run your generic on_attach() function used by your LSP config
-  end
-
-  opts.on_attach = on_attach
-  opts.capabilities = vim.lsp.protocol.make_client_capabilities()
-
-  return opts
+  jdtls.start_or_attach(config)
 end
 
 return { setup = setup }
