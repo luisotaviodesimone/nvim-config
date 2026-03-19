@@ -58,6 +58,9 @@ local function setup()
   local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
   local workspace_dir = home .. "/.cache/jdtls/workspace/" .. project_name
 
+  -- Lombok support
+  local lombok_path = jdtls_install_path .. "/lombok.jar"
+
   -- Use Java 21 to RUN jdtls (required), but project uses Java 17
   local cmd = {
     java_21_path .. "/bin/java",
@@ -70,6 +73,7 @@ local function setup()
     "--add-modules=ALL-SYSTEM",
     "--add-opens", "java.base/java.util=ALL-UNNAMED",
     "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+    "-javaagent:" .. lombok_path,
     "-jar", vim.fn.glob(jdtls_install_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration", jdtls_install_path .. "/config_linux",
     "-data", workspace_dir,
