@@ -12,7 +12,6 @@ local servers = {
   "yamlls",
   "marksman",
   "tailwindcss",
-  "jdtls",
   "helm_ls",
   "terraformls",
   "vue_ls",
