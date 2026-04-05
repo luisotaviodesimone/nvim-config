@@ -7,6 +7,7 @@ local servers = {
   "eslint", -- for this lsp, mason doesn't have a server, so we need to install it globally with npm with `npm install -g vscode-langservers-extracted`
   "vtsls",
   "rust_analyzer",
+  "prismals",
   "gopls",
   "pyright",
   "yamlls",
