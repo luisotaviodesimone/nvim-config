@@ -3,6 +3,7 @@ return {
   opts = {
     ensure_installed = {
       "beautysh",
+      "biome",
       "clangd",
       "css-lsp",
       "django-template-lsp",

@@ -1,15 +1,25 @@
 require "custom.utils"
 
+local function js_formatter(bufnr)
+  local fname = vim.api.nvim_buf_get_name(bufnr or 0)
+
+  if vim.fs.root(fname, { "biome.json" }) then
+    return { "biome" }
+  end
+
+  return { "prettier" }
+end
+
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
     -- Conform will run multiple formatters sequentially
     python = { "isort", "black" },
     -- Use a sub-list to run only the first available formatter
-    typescriptreact = { "prettierd", "prettier" },
-    typescript = { "prettierd", "prettier" },
-    javascript = { "prettierd", "prettier" },
-    vue = { "prettierd", "prettier" },
+    typescriptreact = js_formatter,
+    typescript = js_formatter,
+    javascript = js_formatter,
+    vue = js_formatter,
     sql = { "sql_formatter" },
     xml = { "xmllint" },
     json = { "fixjson" },
