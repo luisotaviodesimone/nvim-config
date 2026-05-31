@@ -101,7 +101,7 @@ map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic locli
 
 lspconfig.on_lsp_attach(function(client, buf, methods_n_keymaps)
   for method, mapping in pairs(methods_n_keymaps) do
-    if client.supports_method(method) then
+    if client:supports_method(method) then
       local mode = mapping.mode or "n"
       local lhs = mapping.lhs
       local rhs = mapping.rhs
