@@ -1,4 +1,3 @@
-local yamlls_config = require "configs.yamlls"
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = {
@@ -10,7 +9,6 @@ local servers = {
   "prismals",
   "gopls",
   "pyright",
-  "yamlls",
   "marksman",
   "tailwindcss",
   "helm_ls",
@@ -27,8 +25,6 @@ local vue_plugin = {
   languages = { "vue" },
   configNamespace = "typescript",
 }
-
-vim.lsp.config("yamlls", yamlls_config)
 
 vim.lsp.config("vtsls", {
   settings = {
