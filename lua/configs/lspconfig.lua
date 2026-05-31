@@ -1,5 +1,3 @@
-require("nvchad.configs.lspconfig").defaults()
-
 local servers = {
   "html",
   "cssls",
@@ -14,6 +12,21 @@ local servers = {
   "helm_ls",
   "terraformls",
   "vue_ls",
+}
+
+vim.diagnostic.config {
+  virtual_text = {
+    spacing = 4,
+    prefix = "●",
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "if_many",
+  },
 }
 
 local vue_language_server_path = vim.fn.stdpath "data"
@@ -89,6 +102,7 @@ local methods_n_keymaps = {
 
 local function on_lsp_attach(callback)
   vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
     callback = function(args)
       local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
       callback(client, args.buf, methods_n_keymaps)
