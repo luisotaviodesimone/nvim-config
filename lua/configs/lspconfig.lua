@@ -12,6 +12,7 @@ local servers = {
   "helm_ls",
   "terraformls",
   "vue_ls",
+  "yamlls",
 }
 
 vim.diagnostic.config {
