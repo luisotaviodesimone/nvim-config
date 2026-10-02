@@ -10,7 +10,7 @@ local servers = {
   "marksman",
   "tailwindcss",
   "helm_ls",
-  "terraformls",
+  "tofu_ls",
   "vue_ls",
   "yamlls",
 }
@@ -51,6 +51,10 @@ vim.lsp.config("vtsls", {
     },
   },
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+})
+
+vim.lsp.config("tofu_ls", {
+  filetypes = { "opentofu", "opentofu-vars", "terraform", "terraform-vars" },
 })
 
 vim.lsp.enable(servers)

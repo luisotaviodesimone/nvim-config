@@ -7,6 +7,7 @@ return {
       "go",
       "gotmpl",
       "helm",
+      "hcl",
       "html",
       "java",
       "javascript",

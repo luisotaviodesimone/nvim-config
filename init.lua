@@ -1,5 +1,7 @@
 require "options"
 
+vim.filetype.add { extension = { tofu = "opentofu", tofuvars = "opentofu-vars" } }
+
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 
@@ -80,7 +82,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(ev)
     vim.bo[ev.buf].commentstring = "# %s"
   end,
-  pattern = { "terraform", "hcl" },
+  pattern = { "terraform", "terraform-vars", "opentofu", "opentofu-vars", "hcl" },
 })
 
 vim.api.nvim_create_autocmd("FileType", {
