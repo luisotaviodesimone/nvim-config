@@ -1,8 +1,8 @@
 -- require "nvchad.mappings"
 local builtin = require "telescope.builtin"
-local my_telescope = require "configs.telescope"
+local my_telescope = require "luisotaviodesimone.configs.telescope"
 local gitsigns = require "gitsigns"
-local lspconfig = require "configs.lspconfig"
+local lspconfig = require "luisotaviodesimone.configs.lspconfig"
 
 -- add yours here
 local map = vim.keymap.set
@@ -121,15 +121,15 @@ map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 -- toggleable
 map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
+  require("luisotaviodesimone.configs.ui").toggle_term "vsp"
 end, { desc = "terminal toggleable vertical term" })
 
 map({ "n", "t" }, "<A-h>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+  require("luisotaviodesimone.configs.ui").toggle_term "sp"
 end, { desc = "terminal toggleable horizontal term" })
 
 map({ "n", "t" }, "<A-i>", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+  require("luisotaviodesimone.configs.ui").toggle_term "float"
 end, { desc = "terminal toggle floating term" })
 
 -- GitSigns mappings
@@ -151,15 +151,15 @@ map("n", "<C-d>", "<C-d>zz")
 
 -- tabufline
 map("n", "<leader><tab>", function()
-  require("nvchad.tabufline").next()
+  vim.cmd "BufferLineCycleNext"
 end, { desc = "buffer goto next" })
 
 map("n", "<leader><S-tab>", function()
-  require("nvchad.tabufline").prev()
+  vim.cmd "BufferLineCyclePrev"
 end, { desc = "buffer goto prev" })
 
 map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
+  require("mini.bufremove").delete()
 end, { desc = "buffer close" })
 
 -- Telescope Mappings
@@ -174,17 +174,17 @@ map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find o
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
-map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
+map("n", "<leader>pt", "<cmd>TermSelect<CR>", { desc = "telescope pick hidden term" })
 map("n", "<leader>fp", "<cmd>Telescope session-lens<CR>", { desc = "telescope search project sessions" })
 
 map("n", "<leader>tt", function()
-  return require("base46").toggle_theme()
+  require("luisotaviodesimone.configs.ui").toggle_theme()
 end, { desc = "Toggle Theme" })
 
 map("n", "<leader>tr", function()
-  return require("base46").toggle_transparency()
+  require("luisotaviodesimone.configs.ui").toggle_transparency()
 end, { desc = "Toggle Transperency" })
 
 map("n", "<leader>th", function()
-  require("nvchad.themes").open()
+  require("telescope.builtin").colorscheme { enable_preview = true }
 end, { desc = "telescope nvchad themes" })

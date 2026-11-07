@@ -1,14 +1,6 @@
-require "custom.utils"
+require "luisotaviodesimone.custom.utils"
 
-local function js_formatter(bufnr)
-  local fname = vim.api.nvim_buf_get_name(bufnr or 0)
-
-  if vim.fs.root(fname, { "biome.json" }) then
-    return { "biome" }
-  end
-
-  return { "prettier" }
-end
+local oxfmtFormatter = { "oxfmt", "prettierd", "prettier", stop_after_first = true }
 
 local options = {
   formatters_by_ft = {
@@ -61,12 +53,6 @@ local options = {
       }
     end,
   },
-
-  -- format_on_save = {
-  --   -- These options will be passed to conform.format()
-  --   timeout_ms = 500,
-  --   lsp_fallback = true,
-  -- },
 }
 
 vim.env.YAMLFIX_WHITELINES = "1"

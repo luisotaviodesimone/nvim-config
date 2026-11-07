@@ -1,0 +1,45 @@
+require("mason").setup {
+  PATH = "skip",
+  ui = {
+    icons = {
+      package_pending = " ",
+      package_installed = " ",
+      package_uninstalled = " ",
+    },
+  },
+  max_concurrent_installers = 10,
+}
+
+require("mason-tool-installer").setup {
+  ensure_installed = {
+    "beautysh",
+    "biome",
+    "clangd",
+    "css-lsp",
+    "django-template-lsp",
+    "djlint",
+    "emmet-language-server",
+    "eslint_d",
+    "fixjson",
+    "gopls",
+    "html-lsp",
+    "jdtls",
+    "lua-language-server",
+    "marksman",
+    "nixpkgs-fmt",
+    "prettier",
+    "pyright",
+    "rust-analyzer",
+    "sql-formatter",
+    "stylua",
+    "tailwindcss-language-server",
+    "taplo",
+    "tofu-ls",
+    "typescript-language-server",
+    "vue-language-server",
+    "yamlfix",
+    "yaml-language-server",
+  },
+  auto_update = true,
+  run_on_start = true,
+}

@@ -1,5 +1,5 @@
-local get_file_name = require("custom.utils").get_file_name
-local is_avoidable = require("custom.utils").is_avoidable
+local get_file_name = require("luisotaviodesimone.custom.utils").get_file_name
+local is_avoidable = require("luisotaviodesimone.custom.utils").is_avoidable
 
 -- local cfg = require("yaml-companion").setup {
 --   -- detect k8s schemas based on file content

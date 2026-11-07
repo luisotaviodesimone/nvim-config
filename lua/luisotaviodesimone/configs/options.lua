@@ -5,6 +5,11 @@ local o = vim.o
 local bo = vim.bo
 local g = vim.g
 
+-- oil/nvim-tree replace netrw
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+g.loaded_matchit = 1
+
 opt.nu = true
 opt.relativenumber = true
 opt.smartindent = true

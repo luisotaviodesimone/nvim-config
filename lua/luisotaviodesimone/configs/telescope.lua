@@ -49,8 +49,6 @@ telescope.setup {
       n = { ["q"] = require("telescope.actions").close },
     },
   },
-
-  extensions_list = { "themes", "terms" },
 }
 
 telescope.load_extension "fzf"
