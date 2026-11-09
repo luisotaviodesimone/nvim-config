@@ -3,23 +3,33 @@ require "luisotaviodesimone.custom.utils"
 local oxfmtFormatter = { "oxfmt", "prettierd", "prettier", stop_after_first = true }
 
 local options = {
+	default_format_opts = {
+		timeout_ms = 3000,
+		async = false,
+		quiet = false,
+		lsp_format = "fallback",
+	},
   formatters_by_ft = {
     lua = { "stylua" },
     -- Conform will run multiple formatters sequentially
     python = { "isort", "black" },
     -- Use a sub-list to run only the first available formatter
-    typescriptreact = js_formatter,
-    typescript = js_formatter,
-    javascript = js_formatter,
-    vue = js_formatter,
+    javascript = oxfmtFormatter,
+    typescript = oxfmtFormatter,
+    typescriptreact = oxfmtFormatter,
+    vue = oxfmtFormatter,
+    json = oxfmtFormatter,
+    jsonc = oxfmtFormatter,
+    html = oxfmtFormatter,
+    css = oxfmtFormatter,
+    scss = oxfmtFormatter,
+    markdown = oxfmtFormatter,
+    ["markdown.mdx"] = oxfmtFormatter,
+    yaml = { "yamlfix", "kubectl_neat" },
     sql = { "sql_formatter" },
     xml = { "xmllint" },
-    json = { "fixjson" },
-    jsonc = { "fixjson" },
     bash = { "beautysh" },
     sh = { "beautysh" },
-    yaml = { "yamlfix", "kubectl_neat" },
-    markdown = { "mdformat" },
     toml = { "taplo" },
     nix = { "nixpkgs_fmt" },
     terraform = { "tofu_fmt" },
@@ -30,10 +40,7 @@ local options = {
     -- wget https://github.com/google/google-java-format/releases/download/v1.25.2/google-java-format-1.25.2-all-deps.jar && mv google-java-format-1.25.2-all-deps.jar ~/.local/bin
     java = { "java ~/.local/bin/google-java-format-1.25.2-all-deps.jar -i" },
     make = { "format_makefile" },
-    -- css = { "prettier" },
-    -- html = { "prettier" },
   },
-
   formatters = {
     kubectl_neat = function()
       local kubectl_neat_path = os.capture "which kubectl-neat"
@@ -52,6 +59,9 @@ local options = {
         stdin = false,
       }
     end,
+    oxfmt = {
+      require_cwd = true,
+    },
   },
 }
 

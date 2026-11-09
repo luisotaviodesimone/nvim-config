@@ -7,12 +7,13 @@ local servers = {
   "prismals",
   "gopls",
   "pyright",
-  "marksman",
-  "tailwindcss",
+  -- "marksman",
+  -- "tailwindcss",
   "helm_ls",
   "tofu_ls",
   "vue_ls",
   "yamlls",
+  "lua_ls",
 }
 
 vim.diagnostic.config {
@@ -55,6 +56,16 @@ vim.lsp.config("vtsls", {
 
 vim.lsp.config("tofu_ls", {
   filetypes = { "opentofu", "opentofu-vars", "terraform", "terraform-vars" },
+})
+
+-- knows the nvim runtime, so `vim.*` is typed and not flagged as undefined
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT" },
+      workspace = { library = { vim.env.VIMRUNTIME }, checkThirdParty = false },
+    },
+  },
 })
 
 vim.lsp.enable(servers)
