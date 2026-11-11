@@ -82,7 +82,16 @@ vim.pack.add {
   gh "tpope/vim-dadbod",
   gh "kristijanhusak/vim-dadbod-ui",
   gh "kristijanhusak/vim-dadbod-completion",
+  gh "hat0uma/csvview.nvim",
 }
+
+require("csvview").setup { view = { display_mode = "border" } }
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "csv", "tsv" },
+  callback = function()
+    vim.cmd "CsvViewEnable"
+  end,
+})
 
 -- notify
 local notify = require "notify"

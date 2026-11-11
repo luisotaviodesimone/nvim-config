@@ -40,6 +40,7 @@ local options = {
     -- wget https://github.com/google/google-java-format/releases/download/v1.25.2/google-java-format-1.25.2-all-deps.jar && mv google-java-format-1.25.2-all-deps.jar ~/.local/bin
     java = { "java ~/.local/bin/google-java-format-1.25.2-all-deps.jar -i" },
     make = { "format_makefile" },
+    csv = { "csv_compact" },
   },
   formatters = {
     kubectl_neat = function()
@@ -61,6 +62,18 @@ local options = {
     end,
     oxfmt = {
       require_cwd = true,
+    },
+    -- trims spaces around every cell; alignment is only visual (csvview.nvim)
+    csv_compact = {
+      command = "python3",
+      args = {
+        "-c",
+        [=[
+import csv, io, sys
+rows = csv.reader(io.TextIOWrapper(sys.stdin.buffer, encoding="utf-8", newline=""))
+csv.writer(sys.stdout, lineterminator="\n").writerows([c.strip() for c in r] for r in rows)
+]=],
+      },
     },
   },
 }
