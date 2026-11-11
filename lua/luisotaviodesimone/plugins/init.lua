@@ -70,6 +70,8 @@ vim.pack.add {
   gh "mfussenegger/nvim-jdtls",
   gh "b0o/SchemaStore.nvim",
   gh "stevearc/conform.nvim",
+	{ src = gh("saghen/blink.cmp"), version = vim.version.range("^1") },
+
 
   -- git
   gh "lewis6991/gitsigns.nvim",
