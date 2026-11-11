@@ -1,9 +1,7 @@
 ---@type vim.lsp.Config
 return {
-	on_attach = function(client)
-		if client and client.server_capabilities.semanticTokensProvider then
-			client.server_capabilities.semanticTokensProvider.range = false
-		end
+	on_init = function(client)
+		client.server_capabilities.semanticTokensProvider = nil
 	end,
 	settings = {
 		complete_function_calls = true,
