@@ -124,7 +124,7 @@ local methods_n_keymaps = {
     lhs = "gr",
     rhs = function()
       vim.g["textDocument/references"] = true
-      vim.lsp.buf.references()
+      require("telescope.builtin").lsp_references()
     end,
     opts = { desc = "LSP Go to references" },
   },
