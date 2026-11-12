@@ -43,9 +43,21 @@ local function is_avoidable(file_name, patterns)
   return false
 end
 
+-- Diagnostics API mappings
+local function jump_diagnostic(count)
+  return function()
+    vim.diagnostic.jump {
+      count = count,
+      on_jump = function(_, bufnr)
+        vim.diagnostic.open_float { bufnr = bufnr, scope = "cursor", focus = false }
+      end,
+    }
+  end
+end
 
 return {
   dump = dump,
   get_file_name = get_file_name,
   is_avoidable = is_avoidable,
+  jump_diagnostic = jump_diagnostic,
 }

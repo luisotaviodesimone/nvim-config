@@ -3,6 +3,7 @@ local builtin = require "telescope.builtin"
 local my_telescope = require "luisotaviodesimone.configs.telescope"
 local gitsigns = require "gitsigns"
 local lspconfig = require "luisotaviodesimone.configs.lspconfig"
+local utils = require "luisotaviodesimone.custom.utils"
 
 -- add yours here
 local map = vim.keymap.set
@@ -91,9 +92,8 @@ map("v", "<leader>p", '"+p', { desc = "Paste from system buffer" })
 -- map("n", "<leader>P", "\"+P", { desc = "Paste from system buffer" })
 
 ---- LSP
--- Diagnostics API mappings
-map("n", "g]", ":lua vim.diagnostic.goto_next()<CR>", { desc = "LSP Go to next diagnostic" })
-map("n", "g[", ":lua vim.diagnostic.goto_prev()<CR>", { desc = "LSP Go to previous diagnostic" })
+map("n", "g]", utils.jump_diagnostic(1), { desc = "LSP Go to next diagnostic" })
+map("n", "g[", utils.jump_diagnostic(-1), { desc = "LSP Go to previous diagnostic" })
 map("n", "go", ":lua vim.diagnostic.open_float()<CR>", { desc = "LSP Open floating diagnostic message" })
 map("n", "gh", ":lua vim.lsp.buf.hover()<CR>", { desc = "LSP Open selected method description" })
 map("n", "ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "LSP Get code actions" })
