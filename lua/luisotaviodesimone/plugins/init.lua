@@ -65,13 +65,12 @@ vim.pack.add {
   -- lsp / format
   gh "neovim/nvim-lspconfig",
   gh "mason-org/mason.nvim",
-	gh "WhoIsSethDaniel/mason-tool-installer.nvim",
+  gh "WhoIsSethDaniel/mason-tool-installer.nvim",
 
   gh "mfussenegger/nvim-jdtls",
   gh "b0o/SchemaStore.nvim",
   gh "stevearc/conform.nvim",
-	{ src = gh("saghen/blink.cmp"), version = vim.version.range("^1") },
-
+  { src = gh "saghen/blink.cmp", version = vim.version.range "^1" },
 
   -- git
   gh "lewis6991/gitsigns.nvim",
@@ -85,14 +84,6 @@ vim.pack.add {
   gh "hat0uma/csvview.nvim",
 }
 
-require("csvview").setup { view = { display_mode = "border" } }
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "csv", "tsv" },
-  callback = function()
-    vim.cmd "CsvViewEnable"
-  end,
-})
-
 -- notify
 local notify = require "notify"
 notify.setup { stages = "static", fps = 0 }
@@ -104,40 +95,9 @@ require("todo-comments").setup {}
 require("kustomize").setup {}
 require("which-key").setup {}
 
-require("gitsigns").setup {
-  signs = {
-    delete = { text = "󰍵" },
-    changedelete = { text = "󱕖" },
-  },
-}
-
 local ibl_hooks = require "ibl.hooks"
 ibl_hooks.register(ibl_hooks.type.WHITESPACE, ibl_hooks.builtin.hide_first_space_indent_level)
 require("ibl").setup { indent = { char = "│" }, scope = { char = "│" } }
-
-require("copilot").setup {
-  suggestion = {
-    enabled = true,
-    auto_trigger = true,
-    hide_during_completion = false,
-    debounce = 10,
-    keymap = {
-      accept = "<M-l>",
-      accept_word = false,
-      accept_line = false,
-      next = "<M-]>",
-      prev = "<M-[>",
-      dismiss = "<C-]>",
-    },
-  },
-  filetypes = { yaml = true, ["."] = true },
-}
-
--- mason (PATH already handled in options.lua)
-require("luisotaviodesimone.plugins.mason")
-
--- treesitter (main branch: install parsers + start highlighting per buffer)
-require("luisotaviodesimone.plugins.treesitter")
 
 -- snippets
 require("luasnip").config.set_config { history = true, updateevents = "TextChanged,TextChangedI" }
@@ -145,56 +105,12 @@ require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 require("luasnip.loaders.from_lua").lazy_load()
 
--- completion (mappings copied from NvChad v2.5)
-local cmp = require "cmp"
-cmp.setup {
-  completion = { completeopt = "menu,menuone" },
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif require("luasnip").expand_or_jumpable() then
-        require("luasnip").expand_or_jump()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif require("luasnip").jumpable(-1) then
-        require("luasnip").jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-  },
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "nvim_lua" },
-    { name = "async_path" },
-  },
-}
 
-require("nvim-autopairs").setup { fast_wrap = {}, disable_filetype = { "TelescopePrompt", "vim" } }
-cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
-
--- dadbod
 require "luisotaviodesimone.plugins.dadbod"
-
 require "luisotaviodesimone.plugins.conform"
 require "luisotaviodesimone.configs.lspconfig"
+require "luisotaviodesimone.plugins.mason" -- mason (PATH already handled in options.lua)
+require "luisotaviodesimone.plugins.gitsigns"
+require "luisotaviodesimone.plugins.treesitter"
+require "luisotaviodesimone.plugins.csvview"
+
