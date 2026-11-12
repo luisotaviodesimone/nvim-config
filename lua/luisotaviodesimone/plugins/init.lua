@@ -113,4 +113,5 @@ require "luisotaviodesimone.plugins.mason" -- mason (PATH already handled in opt
 require "luisotaviodesimone.plugins.gitsigns"
 require "luisotaviodesimone.plugins.treesitter"
 require "luisotaviodesimone.plugins.csvview"
+require "luisotaviodesimone.plugins.completion"
 
