@@ -176,6 +176,8 @@ map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map("n", "<leader>pt", "<cmd>TermSelect<CR>", { desc = "telescope pick hidden term" })
 map("n", "<leader>fp", "<cmd>Telescope session-lens<CR>", { desc = "telescope search project sessions" })
+map("n", "<leader>ft", builtin.lsp_document_symbols, { desc = "telescope LSP document symbols" })
+map("n", "<leader>ft", builtin.lsp_dynamic_workspace_symbols, { desc = "telescope LSP workspace symbols" })
 
 map("n", "<leader>tt", function()
   require("luisotaviodesimone.configs.ui").toggle_theme()
