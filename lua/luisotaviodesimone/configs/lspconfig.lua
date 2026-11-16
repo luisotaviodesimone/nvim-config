@@ -97,7 +97,7 @@ local methods_n_keymaps = {
     lhs = "gd",
     rhs = function()
       vim.g["textDocument/definition"] = true
-      vim.lsp.buf.definition()
+      require("telescope.builtin").lsp_definitions()
     end,
     opts = { desc = "LSP Go to definition" },
   },

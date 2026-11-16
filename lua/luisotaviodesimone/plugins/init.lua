@@ -89,7 +89,7 @@ local notify = require "notify"
 notify.setup { stages = "static", fps = 0 }
 vim.notify = notify
 
-require("oil").setup { default_file_explorer = true }
+require("oil").setup { default_file_explorer = true, columns = { "icon", "size" } }
 require("auto-session").setup { suppressed_dirs = { "~/", "~/Downloads", "/" }, log_level = "error" }
 require("todo-comments").setup {}
 require("kustomize").setup {}
@@ -105,7 +105,6 @@ require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 require("luasnip.loaders.from_lua").lazy_load()
 
-
 require "luisotaviodesimone.plugins.dadbod"
 require "luisotaviodesimone.plugins.conform"
 require "luisotaviodesimone.configs.lspconfig"
@@ -114,4 +113,3 @@ require "luisotaviodesimone.plugins.gitsigns"
 require "luisotaviodesimone.plugins.treesitter"
 require "luisotaviodesimone.plugins.csvview"
 require "luisotaviodesimone.plugins.completion"
-
