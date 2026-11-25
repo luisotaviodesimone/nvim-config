@@ -12,3 +12,4 @@ vim.schedule(function()
 end)
 
 require "luisotaviodesimone.configs.autocmds"
+require "luisotaviodesimone.custom.sops"
